@@ -1,0 +1,180 @@
+:root {
+    --nav_height        : 54px;
+    --pagination_height : 80px;
+    --nav_color         : rgb(231, 228, 224);
+}
+
+body
+    {
+        background-color: rgb(248, 249, 250);
+    }
+
+/* ----[ Login Form ]---- */
+form input
+    {
+        padding      : 5px;
+        margin-bottom: 4px;
+        border-radius: 5px;
+        border-style : none;
+    }
+form
+    {
+        width: 50vw;
+        margin:  auto;
+        padding: 10px;
+        background-color: rgb(254, 255, 255);
+        border-radius: 5px;
+
+        box-shadow: -1px 0px 8px 0px rgba(0,0,0,0.75);
+    }
+.loginForm, .regForm
+    {
+        margin: calc(100vh/5) auto;
+    }
+.loginContainer form
+    {
+        width            : auto;
+        height           : var(--nav_height);
+        box-shadow       : none;
+        padding          : 0px;
+        margin: 0;
+        text-align       : right;
+        background-color : var( --nav_color );
+    }
+.loginContainer form span {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+
+/*-------------------------*/
+/*-------nav panel--------*/
+    #nav{
+        background-color : var( --nav_color );
+        padding          : 2px;
+        margin           : 0;
+        padding-right    : 0;
+        user-select      : none;
+        height           : var( --nav-height);
+    }
+    #nav a {
+        color: rgb(231, 154, 53);
+    }
+    #nav span{
+        color: rgb(165, 111, 10);
+        font-weight: 900;
+    }
+
+
+/*_______________________________________*/
+/*---------------index------------------*/
+
+    .dellAllForm
+        {
+            width   : 0;
+            margin  : 10px 0 0 0;
+            padding : 0;
+        }
+    .btnDellAll
+        {
+            display     : block;
+            float       : left;
+            margin-left : 15px;
+
+        }
+    .alert.alert-danger, .alert-success
+        {
+            padding: 2px;
+            margin-top: 3px;
+        }
+
+    .contactsWrapper{
+        padding    : 0;
+        margin-top : 10px;
+        height     : calc( 100vh - ( var(--nav_height) + var(--pagination_height) + 10px + 34px + 30px ) );
+
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .itemForm
+        {
+            width            : auto;
+            margin           : auto;
+            background-color : rgba(203, 207, 207, 0.932);
+
+        }
+    .item_Form_Wrap
+        {
+
+            width         : 230px;
+            display       : inline-block;
+            margin        : 5px;
+            list-style    : none;
+            margin-bottom : 30px;
+
+            background-color : rgba(254, 255, 255, 0.774);
+            border-radius    : 5px;
+
+            box-shadow: -1px 0px 8px 0px rgba(0,0,0,0.75);
+        }
+    .item_Form_Wrap .item_email{
+        text-align     : center;
+        pointer-events : none;
+    }
+    .item_Form_Wrap form button{
+        font-size: 10px;
+    }
+
+
+.pagination
+    {
+        height  : var(--pagination_height);
+        width   : 100vw;
+        padding : 0;
+        margin  : 0 ;
+
+    }
+.pagination *{
+    font-size: 14px !important;
+}
+
+
+/*  popups */
+.error{
+    color: crimson;
+}
+
+
+/* --[media queries]-- */
+
+@media only screen and (max-width: 486px) {
+    .loginContainer{
+        margin-left: 20px;
+        padding: 0;
+    }
+    .loginContainer form span {
+        font-size: 15px !important;
+    }
+    .logout{
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #nav > a,
+    .loginContainer form span{
+        font-size: 13px !important;
+    }
+    .contactsWrapper{
+        height: auto;
+    }
+}
+
+@media only screen and (orientation:landscape) and (max-width: 640px) {
+    .contactsWrapper{
+        height: auto;
+    }
+}
