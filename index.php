@@ -2,7 +2,7 @@
 use inc\classes\Router;
 
 
-require_once('./inc/boot.php');
+require_once('./inc/web.php');
 
 require_once './vendor/autoload.php';
 

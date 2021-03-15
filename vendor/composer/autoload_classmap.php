@@ -13,6 +13,6 @@ return array(
     'inc\\controllers\\DataCrude' => $baseDir . '/inc/controllers/crud_data.php',
     'inc\\controllers\\PageController' => $baseDir . '/inc/controllers/pageController.php',
     'inc\\controllers\\UserController' => $baseDir . '/inc/controllers/user.php',
-    'inc\\db_handle\\DbQuery' => $baseDir . '/inc/db_handle/DbModel.php',
-    'inc\\db_handle\\migrations\\CreateDataBase' => $baseDir . '/inc/db_handle/migrations/createTable.php',
+    'inc\\database\\DbQuery' => $baseDir . '/inc/database/DbModel.php',
+    'inc\\database\\migrations\\CreateDataBase' => $baseDir . '/inc/database/migrations/createTable.php',
 );

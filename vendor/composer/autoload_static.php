@@ -34,8 +34,8 @@ class ComposerStaticInit2c634b31075d29cca1e4959968123022
         'inc\\controllers\\DataCrude' => __DIR__ . '/../..' . '/inc/controllers/crud_data.php',
         'inc\\controllers\\PageController' => __DIR__ . '/../..' . '/inc/controllers/pageController.php',
         'inc\\controllers\\UserController' => __DIR__ . '/../..' . '/inc/controllers/user.php',
-        'inc\\db_handle\\DbQuery' => __DIR__ . '/../..' . '/inc/db_handle/DbModel.php',
-        'inc\\db_handle\\migrations\\CreateDataBase' => __DIR__ . '/../..' . '/inc/db_handle/migrations/createTable.php',
+        'inc\\database\\DbQuery' => __DIR__ . '/../..' . '/inc/database/DbModel.php',
+        'inc\\database\\migrations\\CreateDataBase' => __DIR__ . '/../..' . '/inc/database/migrations/createTable.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

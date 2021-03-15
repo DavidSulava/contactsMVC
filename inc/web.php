@@ -22,7 +22,8 @@ Router::post("addContact",  'DataCrude@addContact');
 Router::post("dataDelete",  'DataCrude@delete');
 Router::post("dataDelAll",  'DataCrude@deleteAll');
 
-Router::get("ajax/forRoutine",  'Ajax@forRoutine');
+
+Router::get("z_db_ceed/forRoutine",  'Cedd_db@forRoutine');
 
 
 

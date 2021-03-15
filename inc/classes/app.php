@@ -3,7 +3,7 @@
 namespace inc\classes;
 
 
-use inc\db_handle\DbQuery;
+use inc\database\DbQuery;
 use inc\classes\User;
 
 // use ReflectionClass;
@@ -12,78 +12,68 @@ use PDOException;
 use Exception;
 
 
-class App
-    {
-        protected static $register = [];
+class App{
+
+    protected static $register = [];
 
 
-        public static function user( string $email='', string $password='' )
-            {
-                if( !array_key_exists( 'user', static::$register ) )
-                    {
-                        if( !array_key_exists( 'db', static::$register ) )
-                            {
-                                static::db() ;
-                            }
+    public static function user( string $email='', string $password='' ){
 
-                        static::$register['user'] =  new User( static::$register['db'], $email, $password);
-                    }
+        if( !array_key_exists( 'user', static::$register ) ){
 
-                return static::$register['user'];
+            if( !array_key_exists( 'db_model', static::$register ) )
+                static::db_model() ;
+
+            static::$register['user'] =  new User( static::$register['db_model'], $email, $password);
+        }
+
+        return static::$register['user'];
+    }
+    public static function db_model(){
+        if( !array_key_exists( 'db_model', static::$register ) ){
+            try{
+                static::$register['db_model'] = DbQuery::getInstance( static::db_connect() );
             }
-        public static function db()
-            {
-                if( !array_key_exists( 'db', static::$register ) )
-                    {
-                        try{
-                            static::$register['db'] = DbQuery::getInstance( static::db_connect() );
-                        }
-                        catch(PDOException $e){
-                            return $e->getMessage();
-                        }
-                    }
-
-                return static::$register['db'];
+            catch(PDOException $e){
+                return $e->getMessage();
             }
-        public static function db_connect()
-            {
+        }
 
-                if( !array_key_exists( 'connection', static::$register ) )
-                    {
-                        try{
-                            $err_mode = config('connections.options');
-                            $bsUser   = config('dbusername');
-                            $bspass   = config('dbpassword');
+        return static::$register['db_model'];
+    }
+    public static function db_connect(){
 
-                            static::$register['connection']  = new PDO( config('connections.sqlite.con_str'), $bsUser , $bspass, $err_mode );
+        if( !array_key_exists( 'connection', static::$register ) ){
+            try{
+                $err_mode = config('connections.options');
+                $bsUser   = config('dbusername');
+                $bspass   = config('dbpassword');
 
-                            return static::$register['connection'];
-                        }
-                        catch(PDOException $e)
-                        { echo  $e->getMessage(); }
-
-                    }
+                static::$register['connection']  = new PDO( config('connections.sqlite.con_str'), $bsUser , $bspass, $err_mode );
 
                 return static::$register['connection'];
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
 
-            }
-        public static function db_create( )
-            {
-                $con = static::db();
+        }
 
-                return $con->createTables();
-            }
-        public static function add( $key, $val )
-            {
-                static::$register[$key]=$val;
-            }
-        public static function get( $key )
-            {
-                if( !array_key_exists( $key, static::$register ) )
-                    {
-                        throw new Exception("No {$key} exists in the App container !", 1);
-                    }
-
-                return static::register[$key];
-            }
+        return static::$register['connection'];
     }
+    public static function db_create( ){
+        $con = static::db_model();
+
+        return $con->createTables();
+    }
+    public static function add( $key, $val ){
+        static::$register[$key]=$val;
+    }
+    public static function get( $key ){
+        if( !array_key_exists( $key, static::$register ) )
+            throw new Exception("No {$key} exists in the App container !", 1);
+
+
+        return static::register[$key];
+    }
+}

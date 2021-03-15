@@ -2,16 +2,14 @@
 namespace inc\controllers;
 use inc\classes\App;
 
-if( !session_id() )
-{
+if( !session_id() ){
     session_cache_limiter('public');
     session_start();
 }
 
 
 
-class Ajax
-{
+class Cedd_db{
 
     public static function forRoutine( $request=[] ){
 
@@ -29,22 +27,22 @@ class Ajax
         ];
 
         $tableUser = config('tableUser');
-        $con   = App::db( );
-        $cUser = $con->fetchAll("SELECT id, email FROM User ");
+        $model   = App::db_model( );
+        $cUser = $model->fetchAll("SELECT id, email FROM User ");
 
         //--[ Create dummy data ]---
 
-        // $cUser = App::db_create();
+        $cUser = App::db_create();
 
-        // foreach ( $emails as $key => $value) {
+        foreach ( $emails as $key => $value) {
 
-        //     $pasConfirm =  ($key + 1).'2345678';
-        //     $respR = $con->request("INSERT INTO User  (email, `password`) VALUES ( ?, ? ) ", [ $value, $pasConfirm ]);
-        // }
+            $pasConfirm =  ($key + 1).'2345678';
+            $respR = $model->request("INSERT INTO User  (email, `password`) VALUES ( ?, ? ) ", [ $value, $pasConfirm ]);
+        }
 
         print_r( json_encode( $cUser ) );
 
-        $con->close();
+        $model->close();
         exit();
     }
 }

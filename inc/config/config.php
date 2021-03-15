@@ -1,9 +1,9 @@
 <?php
 
-$sql_Location = dirname( dirname(__DIR__)).'/inc/db_handle/sqlite/root_SQLite.sqlite';
+$sql_Location = dirname( dirname(__DIR__)).'/inc/database/sqlite/root_SQLite.sqlite';
 
 $host   = 'localhost';
-$bdName = 'myDB';
+$bdName = '';
 $dbUser = '';
 $dbPass = '';
 
